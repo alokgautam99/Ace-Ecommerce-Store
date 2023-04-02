@@ -1,0 +1,18 @@
+<%- include('../partials/header'); -%>
+<div class="box">
+    <div class="box-heading">
+        Add a new Comment
+    </div>
+    <div class="align-vertical">
+        <form class="form-width" action="/blogs/<%= campground._id %>/comments" method="POST">
+            <input class="place-holder" type="text" name="comment[text]" placeholder="Add comment">
+            
+            <button class="box-button">Submit</button>
+        </form> 
+    </div>
+
+    <a  class="back-button"  href="/blogs">Go Back</a>
+</div>
+
+
+

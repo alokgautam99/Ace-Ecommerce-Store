@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <style type="text/css" media="all">
+        @import "/stylesheets/widgEditor.css";
+    </style>
+
+    <script type="text/javascript" src="/scripts/widgEditor.js"></script>
+    <title>Freedom</title>
+</head>
+<body>
+    <header>
+        <div class="header-class">
+            <div class="logo-container">
+                <a class="hidden-logo" href="/blogs">F</a><a class="logo" href="/blogs">Freedom</a>
+            </div>
+            
+            <nav>
+                <ul class="nav-links"> 
+                    <% if(!currentUser){ %>
+                    <li> 
+                        <form action="/blogs" method="GET">
+                            <div class="horizontal-align">
+                               
+                                <div>
+                                    <button class="search-button" type="submit"><img class="search-logo" src="https://res.cloudinary.com/sdevblog/image/upload/v1591611967/search_veyfii.png"  alt="search"></button>
+                                </div>
+                                <div>
+                                    <input id="search-box" name="search" placeholder="Blogs search.." type="text"> 
+                                </div>
+                            </div>
+                        </form>
+                        
+                    </li>    
+                
+                    <li> <a class="nav-link" href="/login">Login</a></li>
+                    <li> <a class="nav-link " href="/register"> Signup</a></li>
+                    <% } else { %>
+                        <li> 
+                            <form action="/blogs" method="GET">
+                                <div class="horizontal-align">
+                                   
+                                    <div>
+                                        <button class="search-button" type="submit"><img class="search-logo" src="https://res.cloudinary.com/sdevblog/image/upload/v1591611967/search_veyfii.png" alt="search"></button>
+                                    </div>
+                                    <div>
+                                        <input id="search-box" name="search" placeholder="Blogs search.." type="text"> 
+                                    </div>
+                                </div>
+                            </form>
+                            
+                        </li>    
+                    <!-- <li> <a class="nav-link" href="/blogs"><img src="https://res.cloudinary.com/sdevblog/image/upload/v1591611351/edit_qg3zrr.png" alt="Blogs" height="28px"></a></li> -->
+                    <li> <a class="nav-link" href="/users/<%= currentUser._id%>"><i class="fas fa-user navbar-user-logo" ></i></a> </li>
+                    <li> <a class="nav-link" href="/users/saved/<%= currentUser._id%>"> <i class="fas fa-thumbtack navbar-pin-logo" ></i></a></li>
+                    <li> <a class="nav-link" href="/logout">Logout</a></li>
+                    <% } %>
+                </ul>
+            </nav>
+        </div>
+      
+    </header>
+    
+
+      <div class="container">
+       <% if(error && error.length > 0){ %>
+        <div class="alert alert-danger" role="alert">
+            <%= error %> 
+        </div> 
+      <% } %>
+           
+      <% if(success && success.length >0){ %>
+        <div class="alert alert-success" role="alert">
+            <%= success %> 
+        </div> 
+        <% } %>   
+      </div>
+
+      <% if(currentUser){ %>
+        <div class="current-user-name">
+            Hi, <%= currentUser.username %>
+        </div>
+        <% } %> 
+    
